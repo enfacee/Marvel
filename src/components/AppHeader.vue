@@ -3,8 +3,13 @@
         <div class="container-fluid">
             <a class="navbar-brand">Marvel</a>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Поиск..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">все</button>
+                <input class="form-control me-2" 
+                    type="search" 
+                    placeholder="Поиск..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success" 
+                        type="submit"
+                        >все</button>
             </form>
         </div>
     </nav>

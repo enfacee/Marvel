@@ -6,16 +6,16 @@
         <div class="container">
             <h1 class="pt-3 pb-3">Персонажи Marvel</h1>
 
+            <app-modal  :character="character" />
 
-            <app-modal/>
-
-            <spinner/>
+            <spinner v-if="loading" />
 
             <div class="row">
 
 
             <div 
-                v-for="el in characters"
+                v-for="(el, idx) in characters"
+                :key="el.id"
                 class="card mb-3 col-sm-12 col-md-6 col-lg-4">
             <div class="row g-0">
                 <div class="col-4">
@@ -32,6 +32,7 @@
                                 data-bs-toggle="modal" 
                                 data-bs-target="#exampleModal"
                                 class="btn btn-secondary btn-sm"
+                                @click ="characterIndex = idx"
                         >
                             Подробнее
                         </button>
@@ -71,9 +72,15 @@
                     .then(json => this.characters = json);
             },
         },
-        computed: {},
-        mounted(){
-            this.fetchCharacters();
+        computed: {
+            character: function(){
+                return this.characters[this.characterIndex] || null;
+            },
+        },
+        async mounted(){
+            this.loading = true;
+            await this.fetchCharacters();
+            this.loading = false;
         },
     }
 </script>
